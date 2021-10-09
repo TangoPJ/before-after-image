@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Before &lt; | &gt; After</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="mainSection">
+        <div id="ba-container" class="ba-container">
+            <div class="ba-after">
+                <img src="images/maddevs.png">
+                <div class="ba-afterPosition afterLabel">
+                    After
+                </div>
+            </div>
+            <div class="ba-before">
+                <div class="ba-before-inset">
+                    <img src="images/maddevs_before.png">
+                    <div class="ba-beforePosition beforeLabel">
+                        Before
+                    </div>
+                </div>
+            </div>
+            <div class="ba-handler"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        new BeforeAfter({
+            id: '#ba-container'
+        });
+    </script>
+
+</body>
+</html>
