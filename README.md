@@ -1,1 +1,2 @@
-# before-after-image
+# Before-after image slider
+Created in pure JS
