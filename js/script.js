@@ -11,6 +11,7 @@ class BeforeAfter {
 
         let containerWidth = beforeAfterContainer.offsetWidth;
         let startOfDiv = beforeAfterContainer.offsetLeft;
+        let timeout;
 
         beforeInset.setAttribute('style', `width: ${beforeAfterContainer.offsetWidth}px;`);
         window.addEventListener('resize', () => {
@@ -28,9 +29,9 @@ class BeforeAfter {
         const returnToDefaultPosition = time => {
             setTimeout(() => {
                 handle.setAttribute('style', `left: ${handlePosition}%;`);
-                handle.style.transition = 'all .3s';
+                handle.style.transition = 'all .4s';
                 before.setAttribute('style', `width: ${beforePosition}%;`);
-                before.style.transition = 'all .3s';
+                before.style.transition = 'all .4s';
             }, time);
         };
 
@@ -56,10 +57,8 @@ class BeforeAfter {
         });
 
         // mousemove event listener
-        var timeout;
 
         beforeAfterContainer.addEventListener('mousemove', e => {
-
             let currentPoint = Math.floor(e.clientX);
             let modifiedCurrentPoint = getCurrentPosition(currentPoint, startOfDiv);
             

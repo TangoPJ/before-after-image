@@ -200,6 +200,7 @@
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+    background: #ff0000;
 }
 
 .afterLabel {
@@ -212,6 +213,7 @@
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+    background: #ff0000;
 }
 
 
