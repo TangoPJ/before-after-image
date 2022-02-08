@@ -1,17 +1,17 @@
-class BeforeAfter {
-    constructor(enteryObject) {
-        const beforeAfterContainer = document.querySelector(enteryObject.id);
+import { MSEC, HANDLEPOSITION, BEFOREPOSITION } from './defaults';
+
+class BeforeAfter extends HTMLElement {
+    constructor({ id }) {
+        super();
+        const beforeAfterContainer = document.querySelector(id);
         const before = beforeAfterContainer.querySelector('.ba-before');
         const afterText = beforeAfterContainer.querySelector('.ba-afterPosition');
         const handle = beforeAfterContainer.querySelector('.ba-handler');
         const beforeInset = beforeAfterContainer.querySelector('.ba-before-inset');
-        const MSEC = 1000;
-        const handlePosition = 50;
-        const beforePosition = 50;
 
         let containerWidth = beforeAfterContainer.offsetWidth;
         let startOfDiv = beforeAfterContainer.offsetLeft;
-        let timeout;
+        let timeout: number;
 
         beforeInset.setAttribute('style', `width: ${beforeAfterContainer.offsetWidth}px;`);
         window.addEventListener('resize', () => {
@@ -19,24 +19,24 @@ class BeforeAfter {
         });
 
         // calculates from the new zero point
-        const getCurrentPosition = (curPos, startDiv) => curPos - startDiv;
+        const getCurrentPosition = (curPos: number, startDiv: number) => curPos - startDiv;
 
         // default positions
-        before.setAttribute('style', `width: ${beforePosition}%;`);
-        handle.setAttribute('style', `left: ${handlePosition}%;`);
+        before.setAttribute('style', `width: ${BEFOREPOSITION}%;`);
+        handle.setAttribute('style', `left: ${BEFOREPOSITION}%;`);
 
         // returns to before position the before image and the handle
-        const returnToDefaultPosition = time => {
+        const returnToDefaultPosition = (time: number) => {
             setTimeout(() => {
-                handle.setAttribute('style', `left: ${handlePosition}%;`);
+                handle.setAttribute('style', `left: ${BEFOREPOSITION}%;`);
                 handle.style.transition = 'all .4s';
-                before.setAttribute('style', `width: ${beforePosition}%;`);
+                before.setAttribute('style', `width: ${BEFOREPOSITION}%;`);
                 before.style.transition = 'all .4s';
             }, time);
         };
 
         // touchmove event listener
-        beforeAfterContainer.addEventListener('touchmove', e => {
+        beforeAfterContainer.addEventListener('touchmove', (e: { changedTouches: { clientX: number; }[]; }) => {
             let currentPoint = Math.floor(e.changedTouches[0].clientX);
 
             let modifiedCurrentPoint = getCurrentPosition(currentPoint, startOfDiv);
@@ -57,8 +57,7 @@ class BeforeAfter {
         });
 
         // mousemove event listener
-
-        beforeAfterContainer.addEventListener('mousemove', e => {
+        beforeAfterContainer.addEventListener('mousemove', (e: { clientX: number; }) => {
             let currentPoint = Math.floor(e.clientX);
             let modifiedCurrentPoint = getCurrentPosition(currentPoint, startOfDiv);
             
@@ -74,8 +73,13 @@ class BeforeAfter {
             // returns to before position the before image and the handle
             if (timeout) clearTimeout(timeout);
             timeout = setTimeout(() => {
-                returnToDefaultPosition();
+                returnToDefaultPosition(MSEC);
             }, MSEC);
         });
     }
 }
+
+window.customElements.define(
+    'before-after-image',
+    BeforeAfter
+);

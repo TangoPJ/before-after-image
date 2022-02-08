@@ -1,0 +1,23 @@
+{
+  "name": "before-after-image",
+  "version": "1.0.0",
+  "description": "Created in pure JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TangoPJ/before-after-image.git"
+  },
+  "author": "Rail Batyrshin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TangoPJ/before-after-image/issues"
+  },
+  "homepage": "https://github.com/TangoPJ/before-after-image#readme",
+  "devDependencies": {
+    "sass": "^1.49.7",
+    "typescript": "^4.5.5"
+  }
+}
